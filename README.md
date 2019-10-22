@@ -12,7 +12,7 @@
   * raw popularity score, entire world:  `raw_total`
   * raw popularity score, USA:  `raw_usa`
   * raw popularity score, UK: `raw_uk`
-  * raw popularity score, Europe (i.e., non-English speaking countries in Europe): `raw-eur`
+  * raw popularity score, Europe (i.e., non-English speaking countries in Europe): `raw_eur`
   * raw popularity score, rest of the world: `raw_row`
 
 * All columns can be `NULL`, except `id`
@@ -47,7 +47,7 @@
   * raw popularity score, entire world:  `raw_total`
   * raw popularity score, USA:  `raw_usa`
   * raw popularity score, UK: `raw_uk`
-  * raw popularity score, Europe (i.e., non-English speaking countries in Europe): `raw-eur`
+  * raw popularity score, Europe (i.e., non-English speaking countries in Europe): `raw_eur`
   * raw popularity score, rest of the world: `raw_row`
 
 * All columns can be `NULL`, except `id`
