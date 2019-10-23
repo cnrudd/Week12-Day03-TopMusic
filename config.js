@@ -1,13 +1,8 @@
+
 module.exports = {
-  host: 'localhost',
-
-  // Your port; if not 3306
+  host: process.env.DB_HOST,
   port: 3306,
-
-  // Your username
-  user: 'root',
-
-  // Your password
-  password: '',
-  database: 'music_rankings_db',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 };
