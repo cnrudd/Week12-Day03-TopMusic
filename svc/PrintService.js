@@ -30,6 +30,18 @@ module.exports = class PrintService {
   }
 
   /**
+   * @param {[String[]]} data Array of array of strings
+   */
+  printDefaultTable(data) {
+    const headers = [
+      'ARTIST', 'SONG', 'YEAR', 'GLOBAL',
+      'USA', 'UK', 'EUR', 'REST OF WORLD',
+    ];
+    const vals = data.map((it) => Object.values(it).slice(1));
+    this.printArray(headers, vals);
+  }
+
+  /**
    *
    * @param {String[]} headers Header names
    * @param {[String[]]} data Array of array of strings

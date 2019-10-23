@@ -62,7 +62,7 @@ class QueryService {
     // see https://github.com/CodeFoodPixels/node-promise-mysql/issues/64
     // console.log(query.sql);
 
-    this.printDefaultTable(data);
+    this.prtSvc.printDefaultTable(data);
     return null;
   }
 
@@ -97,7 +97,7 @@ class QueryService {
         LIMIT 10;`,
         [orderBy.answer]
     );
-    this.printDefaultTable(data);
+    this.prtSvc.printDefaultTable(data);
     return null;
   }
 
@@ -119,20 +119,8 @@ class QueryService {
         ORDER BY ?? DESC;`,
         [`%${song.answer}%`, orderBy.answer]
     );
-    this.printDefaultTable(data);
+    this.prtSvc.printDefaultTable(data);
     return null;
-  }
-
-  /**
-   * @param {[String[]]} data Array of array of strings
-   */
-  printDefaultTable(data) {
-    const headers = [
-      'ARTIST', 'SONG', 'YEAR', 'GLOBAL',
-      'USA', 'UK', 'EUR', 'REST OF WORLD',
-    ];
-    const vals = data.map((it) => Object.values(it).slice(1));
-    this.prtSvc.printArray(headers, vals);
   }
 
   /**
@@ -159,6 +147,10 @@ class QueryService {
       {
         name: 'REST OF WORLD',
         value: 'raw_row',
+      },
+      {
+        name: 'YEAR of Publication',
+        value: 'year',
       },
     ];
 
