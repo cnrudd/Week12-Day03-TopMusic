@@ -6,6 +6,10 @@ SELECT * FROM `songs` WHERE artist = 'the police';
 
 SELECT * FROM `songs` WHERE artist LIKE '%ng%';
 
+SELECT * FROM songs
+        WHERE artist LIKE '%beatles%'
+        ORDER BY raw_usa DESC
+
 -- * A query which returns all artists who appear 
 -- within the top 5000 more than once
 SELECT artist, COUNT(*) AS `count`

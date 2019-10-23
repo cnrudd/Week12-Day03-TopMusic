@@ -1,7 +1,7 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
 
-const DB = require('./DB');
+const QueryService = require('./svc/QueryService');
 
 
 /**
@@ -17,34 +17,35 @@ const DB = require('./DB');
   * Main entry point to app
   */
 async function run() {
-  const db = new DB();
-  await db.createConnection();
+  const qSvc = new QueryService();
+  await qSvc.createConnection();
 
   console.log('Welcome to the Top 5000 Songs DB.');
-  interact(db);
+  interact(qSvc);
 }
 
 /**
  *
- * @param {Object} db Our DB class with connection and queries
+ * @param {Object} qSvc Instance of QueryService class
+ *                      with connection and queries
  */
-async function interact(db) {
+async function interact(qSvc) {
   const choices = [
     {
       name: 'Find all songs by artist',
-      value: () => db.getAllSongsByArtist(),
+      value: () => qSvc.getAllSongsByArtist(),
     },
     {
       name: 'Find all artists who have more than one hit song',
-      value: () => db.getMultiHitArtists(),
+      value: () => qSvc.getMultiHitArtists(),
     },
     {
-      name: 'Find all songs that are in the top ten in the world',
-      value: () => db.getTopTen(),
+      name: 'Find all songs that are in the top ten',
+      value: () => qSvc.getTopTen(),
     },
     {
       name: 'Find info about a specific song',
-      value: () => db.getSongByName(),
+      value: () => qSvc.getSongByName(),
     },
     {
       name: 'Quit',
@@ -53,9 +54,9 @@ async function interact(db) {
   ];
 
 
-  const doWhat = await inquirer.prompt(
+  const userAction = await inquirer.prompt(
       {
-        name: 'choice',
+        name: 'doIt',
         message: 'What would you like to know?',
         type: 'list',
         choices,
@@ -63,9 +64,9 @@ async function interact(db) {
       }
   );
 
-  await doWhat.choice();
+  await userAction.doIt();
 
-  interact(db);
+  interact(qSvc);
 }
 
 run();
