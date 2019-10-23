@@ -40,12 +40,20 @@ async function interact(qSvc) {
       value: () => qSvc.getMultiHitArtists(),
     },
     {
+      name: 'Find info about a specific song',
+      value: () => qSvc.getSongByName(),
+    },
+    {
       name: 'Find all songs that are in the top ten',
       value: () => qSvc.getTopTen(),
     },
     {
-      name: 'Find info about a specific song',
-      value: () => qSvc.getSongByName(),
+      name: 'Find how many hits in each year',
+      value: () => qSvc.getHitsCountByYear(),
+    },
+    {
+      name: 'Find hit songs in a particular year',
+      value: () => qSvc.getHitsInYear(),
     },
     {
       name: 'Quit',

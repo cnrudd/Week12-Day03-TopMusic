@@ -48,7 +48,6 @@ class QueryService {
           message: 'Enter artist\'s name:',
         }
     );
-
     const orderBy = await this.orderByPrompt();
 
     // see 'array/object deconstruction'
@@ -118,6 +117,45 @@ class QueryService {
         WHERE song LIKE ?
         ORDER BY ?? DESC;`,
         [`%${song.answer}%`, orderBy.answer]
+    );
+    this.prtSvc.printDefaultTable(data);
+    return null;
+  }
+
+  /**
+   * Find the number of hits in each year
+   * @return {Promise}
+   */
+  async getHitsCountByYear() {
+    const [data] = await this.conn.query(
+        `SELECT year, COUNT(*) AS hits
+      FROM songs
+      GROUP BY year
+      ORDER BY hits DESC;`
+    );
+    const headers = ['YEAR', 'HITS'];
+    const vals = data.map((it) => Object.values(it));
+    this.prtSvc.printArray(headers, vals);
+    return null;
+  }
+
+  /**
+   * Find hits in a specific year
+   * @return {Promise}
+   */
+  async getHitsInYear() {
+    const year = await inquirer.prompt(
+        {
+          name: 'answer',
+          message: 'Enter year:',
+        }
+    );
+    const orderBy = await this.orderByPrompt();
+    const [data] = await this.conn.query(
+        `SELECT * FROM songs
+        WHERE year = ?
+        ORDER BY ?? DESC;`,
+        [year.answer, orderBy.answer]
     );
     this.prtSvc.printDefaultTable(data);
     return null;

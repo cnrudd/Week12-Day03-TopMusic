@@ -25,3 +25,9 @@ LIMIT 10;
 
 --  * A query which searches for a specific song in the top 5000 and returns the data for it
 SELECT * FROM `songs` WHERE song LIKE '%nothing%';
+
+-- Find how many hit songs in each year
+SELECT year, COUNT(*) AS hits
+FROM songs
+GROUP BY year
+ORDER BY hits DESC;
