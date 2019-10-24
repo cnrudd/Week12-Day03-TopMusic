@@ -1,14 +1,15 @@
 USE music_rankings_db;
 
+-- replace '[ABS_PATH]' with your absolute path to this repo on your machine
 TRUNCATE `songs`;
-LOAD DATA INFILE '/Users/cnrudd/workspace/2U/fullStackFlex/classwork/12-Week/03-Day/12-Week-03-Day/12-TopMusic/TopSongs.csv' 
+LOAD DATA LOCAL INFILE '[ABS_PATH]/data/TopSongs.csv' 
 INTO TABLE songs 
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 TRUNCATE `albums`;
-LOAD DATA INFILE '/Users/cnrudd/workspace/2U/fullStackFlex/classwork/12-Week/03-Day/12-Week-03-Day/12-TopMusic/TopAlbums.csv' 
+LOAD DATA LOCAL INFILE '[ABS_PATH]/data/TopAlbums.csv' 
 INTO TABLE `albums` 
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
