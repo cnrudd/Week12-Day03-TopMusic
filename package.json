@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-docs": "jsdoc -c jsdoc.json"
+    "build-docs": "jsdoc -c jsdoc.json --readme README.md"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["songs", "albums", "pop charts", "data"],
+  "author": "Colin Rudd",
   "license": "ISC",
   "dependencies": {
     "@lvchengbin/cli-table": "0.0.0",

@@ -1,17 +1,25 @@
 /**
+ * @module PrintService
+ */
+
+/**
  * cli-table prints arrays or objects in nicely formatted tables
  * to the console
  * @see {@link https://www.npmjs.com/package/@lvchengbin/cli-table}
  */
 const Table = require( '@lvchengbin/cli-table' );
 
-module.exports = class PrintService {
+/**
+ * The PrintService takes care of formatting and styling data
+ * before logging it to the console.
+ */
+class PrintService {
   /**
    * Set some class properties in the constructor
    */
   constructor() {
     /**
-     * The colors used in the output tables.
+     * @property {Object} consoleTableStyle The colors used in the output tables.
      * Chosen to be readable in both dark and light themes.
      */
     this.consoleTableStyle = {
@@ -30,21 +38,23 @@ module.exports = class PrintService {
   }
 
   /**
-   * @param {[String[]]} data Array of array of strings
+   * The table printed by most queries, shows all columns.
+   * @param {(album|song)} column The name of the subject's column
+   * @param {Array.<string[]>} data Array of array of strings
    */
-  printDefaultTable(data) {
+  printDefaultTable(column, data) {
     const headers = [
-      'ARTIST', 'SONG', 'YEAR', 'GLOBAL',
+      'ARTIST', column.toUpperCase(), 'YEAR', 'GLOBAL POSITION', 'GLOBAL',
       'USA', 'UK', 'EUR', 'REST OF WORLD',
     ];
-    const vals = data.map((it) => Object.values(it).slice(1));
+    const vals = data.map((it) => Object.values(it));
     this.printArray(headers, vals);
   }
 
   /**
-   *
+   * The lower level table printer
    * @param {String[]} headers Header names
-   * @param {[String[]]} data Array of array of strings
+   * @param {Array.<string[]>} data Array of array of strings
    */
   printArray(headers, data) {
     // add row count to row data
@@ -57,5 +67,6 @@ module.exports = class PrintService {
     console.log(table);
     console.log('\n');
   }
-}
-;
+};
+
+module.exports = PrintService;
