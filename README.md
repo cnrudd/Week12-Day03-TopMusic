@@ -1,9 +1,23 @@
-# Sample Output
+# **Sample Output**
 ![First Search](img/start.png)
 ![Next Search](img/next.png)
 
+# **How to Use/Run Instructions**
+1.  Clone or fork & clone repo.
+2.  run `npm i`
+3.  Make database (see `sql/schema.sql`)
+4.  Load data from `data` dir into the new database.  See `sql/import-data.sql` or use MySQLWorkbench GUI.
+5.  This project uses `dotenv` to read DB config info from a `.env` file.  To run index.js on your machine, you need to add a `.env` file to your clone of this repo. It should contain the following keys with values appropriate to your setup:
 
-# **Instructions**
+      * DB_HOST=
+      * DB_USER=
+      * DB_PASS=
+      * DB_NAME=
+
+6.  Run app from command line with `node index` from within the project directory.
+ 
+
+# **Development Instructions**
 
 ## Step 1:  Create DB, Import Data
 * Create a database called `music_rankings_db` which will eventually house all of the music data contained within `TopSongs.csv`
